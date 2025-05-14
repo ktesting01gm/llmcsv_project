@@ -31,7 +31,7 @@ with open(input_csv_path, mode='r', encoding='utf-8') as infile:
     reader = csv.DictReader(infile)
     
     # Prepare header for output CSV
-    headers = ['Question', 'Expected Answer', 'LLM Response']
+    headers = ['question', 'answer', 'LLM Response']
     
     # Open a new CSV file to write the results
     with open(output_csv_path, mode='w', encoding='utf-8', newline='') as outfile:
@@ -41,16 +41,16 @@ with open(input_csv_path, mode='r', encoding='utf-8') as infile:
         writer.writeheader()
         
         for row in reader:
-            question = row['Question']
-            expected_answer = row['Expected Answer']
+            question = row['question']
+            expected_answer = row['answer']
             
             # Call LLM and get response
             llm_response = call_llm(question, api_key='your_api_key_here')
             
             # Write the results to the output CSV
             writer.writerow({
-                'Question': question,
-                'Expected Answer': expected_answer,
+                'question': question,
+                'answer': expected_answer,
                 'LLM Response': llm_response
             })
 
