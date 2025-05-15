@@ -10,7 +10,8 @@ output_cvs_path = "result.csv"
 class LlmData:
     BASEURL = "http://localhost:1234/v1"
     APIKEY = "lm-studio"
-    MODEL = "qwen2.5-7b-instruct"
+    MODEL_1 = "qwen2.5-7b-instruct"
+    MODEL_2 = "gemma-3-12b-it"
     client = OpenAI(base_url=BASEURL, api_key=APIKEY)
     SYSTEM_PROMPT = "You are a helpful assistant that can answer questions about history, science, people, places, or concepts. Answer the following question with a person, name, place, date, etc. that answers the question. Output only the answer and put it in double quotes and square brackets as follows [\"answer\"]. Discard all the other information except the answer and omit punctuation or escape symbols. Feel free to think through the answer before you respond. If you do not know, respond with: I don't know."
     PROMPT = "where does the movie the sound of music take place?"
@@ -19,7 +20,7 @@ class LlmData:
 # Make the LLM call
 def call_llm(question):
     response = LlmData.client.chat.completions.create(
-        model=LlmData.MODEL,
+        model=LlmData.MODEL_2,
         messages=[
         {"role": "system", "content": LlmData.SYSTEM_PROMPT},
         {"role": "user", "content": question}
