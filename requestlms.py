@@ -12,7 +12,7 @@ class LlmData:
     APIKEY = "lm-studio"
     MODEL = "qwen2.5-7b-instruct"
     client = OpenAI(base_url=BASEURL, api_key=APIKEY)
-    SYSTEM_PROMPT = "You are a helpful assistant that can answer questions about history, science, people, places, or concepts. Answer the following question with a person, name, place, date, etc. that answers the question. Output only the answer. Discard all the other information except the answer and omit punctuation or escape symbols. Feel free to think through the answer before you respond. If you do not know, respond with: I don't know."
+    SYSTEM_PROMPT = "You are a helpful assistant that can answer questions about history, science, people, places, or concepts. Answer the following question with a person, name, place, date, etc. that answers the question. Output only the answer and put it in double quotes and square brackets as follows [\"answer\"]. Discard all the other information except the answer and omit punctuation or escape symbols. Feel free to think through the answer before you respond. If you do not know, respond with: I don't know."
     PROMPT = "where does the movie the sound of music take place?"
  
 
