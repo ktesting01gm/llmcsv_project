@@ -13,7 +13,7 @@ class LlmData:
     MODEL_1 = "qwen2.5-7b-instruct"
     MODEL_2 = "gemma-3-12b-it"
     client = OpenAI(base_url=BASEURL, api_key=APIKEY)
-    SYSTEM_PROMPT = "You are a helpful assistant that can answer questions about history, science, people, places, or concepts. Answer the following question with a person, name, place, date, etc. that answers the question. Output only the answer and put it in double quotes and square brackets as follows [\"answer\"]. Discard all the other information except the answer and omit punctuation or escape symbols. Feel free to think through the answer before you respond. If you do not know, respond with: I don't know."
+    SYSTEM_PROMPT = "You are a helpful assistant that can answer questions about history, science, people, places, or concepts. Answer the following question with a person, name, place, date, etc. that answers the question. Output only the answer. Discard all the other information except the answer and omit punctuation or escape symbols. Feel free to think through the answer before you respond. If you do not know, respond with: I don't know."
     PROMPT = "where does the movie the sound of music take place?"
  
 
@@ -51,7 +51,7 @@ def csvprocess(inputcsv, outputcsv):
             airesponse = call_llm(question)  # Get response from LLM model
             writer.writerow({
                 'question': question,
-                'answer': answer,
+                'answer': "".join(c for c in answer if c not in ['"','[', ']']), #remove quotes and brackets from 'answer' column
                 'result': airesponse
             })
 
